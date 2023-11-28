@@ -59,9 +59,9 @@ TukeyHSD(aov1)
 ggsave("f3.png",f3,dpi=300,height=5,width=5)
 ## H3
 rm(list=ls())
-x<-rep(c("Prime","No Prime"),2)
-y<-c(85,52,90,30)
-z<-c("High","Low","Low","High")
+x<-rep(c("Prime","No Prime"),100)
+y<-rep(c(85,52,90,30),50)
+z<-rep(c("High","Low","Low","High"),50)
 
 dat<-data.frame(x,y,z)
 f4<-ggplot(dat, aes(x=x,y=y,fill=z))+geom_bar(stat="identity",position="dodge")+
@@ -73,6 +73,9 @@ f4<-ggplot(dat, aes(x=x,y=y,fill=z))+geom_bar(stat="identity",position="dodge")+
   scale_fill_grey()
 
 ggsave("f4.png",f4,dpi=300,height=5,width=5)
+
+aov3<-aov(y~x*z)
+summary(aov3)
 ## H4a
 rm(list=ls())
 poleff<-rep(c("High","Low","Low","High"),50)
